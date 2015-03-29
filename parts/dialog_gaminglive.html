@@ -1,0 +1,28 @@
+<md-dialog>
+
+  <md-content class="sticky-container">
+    <md-subheader>Liste des Chaines GamingLive actives</md-subheader>
+    <div class="dialog-content">
+
+      <md-list>
+        <md-item ng-repeat="chaine in ctrl.chaines">
+          <p>{{item}}</p>
+        </md-item>
+      </md-list>
+
+      <ul id="emplacement_list_stream_dailymotion" class="list-group">
+        <li>aze</li>
+        <li>aze</li>
+        <li>qsdwxcsd</li>
+      </ul>
+
+    </div>
+  </md-content>
+  <div class="md-actions" layout="row">
+    
+    <md-button ng-click="modal_switchStream()" id="btn_load_following_list" type="button" class="md-primary">
+      Visionner la chaine selectionnée
+    </md-button>
+
+  </div>
+</md-dialog>
