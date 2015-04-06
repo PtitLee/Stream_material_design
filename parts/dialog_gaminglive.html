@@ -5,24 +5,17 @@
     <div class="dialog-content">
 
       <md-list>
-        <md-item ng-repeat="chaine in ctrl.chaines">
-          <p>{{item}}</p>
+        <md-item class="md-3-line" ng-repeat="item in items">
+          <div class="md-item-text">
+
+            <md-button class="md-raised" ng-click="dialog_switchDailychannel({{item.id}})">{{ item.title }}</md-button>
+            
+            <span class="badge floatR">{{ item.audience }}</span>
+
+          </div>
         </md-item>
       </md-list>
 
-      <ul id="emplacement_list_stream_dailymotion" class="list-group">
-        <li>aze</li>
-        <li>aze</li>
-        <li>qsdwxcsd</li>
-      </ul>
-
     </div>
   </md-content>
-  <div class="md-actions" layout="row">
-    
-    <md-button ng-click="modal_switchStream()" id="btn_load_following_list" type="button" class="md-primary">
-      Visionner la chaine selectionnée
-    </md-button>
-
-  </div>
 </md-dialog>

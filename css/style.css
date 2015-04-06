@@ -7,3 +7,15 @@
 	margin-right: 5px;
 }
 
+.floatR {
+	float: right;
+}
+
+md-content.sticky-container {
+	padding: 0;
+}
+
+h2.md-subheader.md-default-theme {
+	background-color: #3F51B5;
+
+}

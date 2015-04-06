@@ -1,8 +1,13 @@
-angular.module('MultiStream', ['ngMaterial'])
+var idChaineGamingLive = 'x1f124w';
+
+angular.module('StreamView', ['ngMaterial'])
 .controller('NavbarCtrl', function($scope, $mdDialog) {
   $scope.alert = '';
 
   $scope.showGamingLiveDialog = function(ev) {
+
+    // searchLiveStream('dailymotion');
+
     $mdDialog.show({
       controller: DialogGamingLiveController,
       templateUrl: 'parts/dialog_gaminglive.html',
@@ -10,56 +15,50 @@ angular.module('MultiStream', ['ngMaterial'])
       locals: {
           chaines: $scope.chaines,
       },
-      onComplete: afterShowAnimation,
     });
-
-
-    function afterShowAnimation(scope, element, options) {
-       $scope.chaines = searchLiveStream('dailymotion');
-    }
 
   };
 });
-function DialogGamingLiveController($scope, $mdDialog) {
+function DialogGamingLiveController($scope, $http, $mdDialog) {
 
-  $scope.modal_switchStream = function(){
-    $mdDialog.close($('input[name=nom_chaine]:checked').val());
+  $scope.dialog_switchDailychannel = function(channel){
+    $mdDialog.close();
+
+    var chat_channel = '';
+
+    $.getJSON('./js/matchDailyIrc.json', function(data) {
+
+      chat_channel = data[channel];
+
+    }).done(function() {
+      
+
+    $rootScope.video_url = $sce.trustAsResourceUrl("//games.dailymotion.com/embed/"+ channel +"?quality=720&autoplay=1");
+
+    $rootScope.chat_url = $sce.trustAsResourceUrl('http://webirc.jeuxvideo.com/#'+chat_channel);
+
+    });
   };
 
-}
-
-
-
-
-function searchLiveStream(TypeOfStream, userName)
-{
-  var tabActiveChannel = [];
-
-  /*************************************************/
-  /******** Intéraction avec Dailymotion ***********/
-  /*************************************************/
-  if (TypeOfStream == "dailymotion")
-  {
-
-    $.getJSON('https://api.dailymotion.com/user/'+ idChaineGamingLive +'/videos?fields=audience,id,mode,onair,title,&private=0&sort=live-audience&limit=100', function(data) {
+  // Loads some data into the dialog scope
+  $http.get('https://api.dailymotion.com/user/'+ idChaineGamingLive +'/videos?fields=audience,id,mode,onair,title,&private=0&sort=live-audience&limit=100')
+    .success(function(data, status) {
+      
+      var tabOnAirChannel = [];
 
       for (var i = 0; i < data.list.length; i++) 
       {
         if(data.list[i].onair == true)
         {
 
-          tabActiveChannel.push( data.list[i] );
+          tabOnAirChannel.push(data.list[i]);
 
         }
 
       }
 
-    }).done(function() {
-
-      return tabActiveChannel;
-
-    });
-  }
-
+      $scope.items = tabOnAirChannel;
+        
+  });
 
 }
