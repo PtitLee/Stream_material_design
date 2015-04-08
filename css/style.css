@@ -15,7 +15,26 @@ md-content.sticky-container {
 	padding: 0;
 }
 
-h2.md-subheader.md-default-theme {
-	background-color: #3F51B5;
+md-content.sticky-container .dialog-content{
+  padding: 0 24px 24px;
+}
 
+h2.md-subheader.md-default-theme {
+  color: white;
+  background-color: #3F51B5;
+  margin: 0px;
+}
+
+.md-subheader:not(.md-sticky-no-effect):after {
+  right: 0;
+}
+
+h2.md-subheader.md-default-theme {
+  margin-right: 0px;
+  margin-top: 0px;
+  box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.16 );
+}
+
+h2 .md-subheader-content {
+  padding-left: 10px;
 }

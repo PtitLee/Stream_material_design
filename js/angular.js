@@ -19,6 +19,8 @@ angular.module('StreamView', ['ngMaterial'])
 
   };
 });
+
+
 function DialogGamingLiveController($scope, $http, $mdDialog) {
 
   $scope.dialog_switchDailychannel = function(channel){
