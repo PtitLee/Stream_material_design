@@ -1,12 +1,26 @@
 var idChaineGamingLive = 'x1f124w';
 
-angular.module('StreamView', ['ngMaterial'])
-.controller('NavbarCtrl', function($scope, $mdDialog) {
+var StreamView = angular.module('StreamView', ['ngMaterial', 'mc.resizer']);
+
+StreamView.controller('ContentCtrl', function ($scope, $rootScope, $sce) {
+
+  //valeur par défaut
+  $rootScope.video_url = $sce.trustAsResourceUrl("//games.dailymotion.com/embed/x1uf230?quality=720&autoplay=1");
+  $rootScope.chat_url = $sce.trustAsResourceUrl('http://webirc.jeuxvideo.com/#GamingLivetv1');
+
+
+  $rootScope.switch_stream = function(stream_name){
+    $rootScope.video_url = $sce.trustAsResourceUrl('http://www.twitch.tv/' + stream_name + '/embed');
+    $rootScope.chat_url = $sce.trustAsResourceUrl('http://www.twitch.tv/' + stream_name + '/chat?popout=');
+  };
+
+
+});
+
+StreamView.controller('NavbarCtrl', function($scope, $compile, $mdDialog) {
   $scope.alert = '';
 
   $scope.showGamingLiveDialog = function(ev) {
-
-    // searchLiveStream('dailymotion');
 
     $mdDialog.show({
       controller: DialogGamingLiveController,
@@ -21,10 +35,9 @@ angular.module('StreamView', ['ngMaterial'])
 });
 
 
-function DialogGamingLiveController($scope, $http, $mdDialog) {
+function DialogGamingLiveController($scope, $http, $compile, $rootScope, $sce, $mdDialog) {
 
   $scope.dialog_switchDailychannel = function(channel){
-    $mdDialog.close();
 
     var chat_channel = '';
 
@@ -35,11 +48,20 @@ function DialogGamingLiveController($scope, $http, $mdDialog) {
     }).done(function() {
       
 
-    $rootScope.video_url = $sce.trustAsResourceUrl("//games.dailymotion.com/embed/"+ channel +"?quality=720&autoplay=1");
+      $rootScope.video_url = $sce.trustAsResourceUrl("//games.dailymotion.com/embed/"+ channel +"?quality=720&autoplay=1");
 
-    $rootScope.chat_url = $sce.trustAsResourceUrl('http://webirc.jeuxvideo.com/#'+chat_channel);
+      $rootScope.chat_url = $sce.trustAsResourceUrl('http://webirc.jeuxvideo.com/#'+chat_channel);
+
+      //avoid iframe reload forbid
+
+      var template = '<iframe id="iframe_chat" ng-src="{{chat_url}}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+      var linkFn = $compile(template);
+      var content = linkFn($rootScope);
+      $('.container-fluid.embed-chat').html(content);
 
     });
+
+    $mdDialog.hide();
   };
 
   // Loads some data into the dialog scope

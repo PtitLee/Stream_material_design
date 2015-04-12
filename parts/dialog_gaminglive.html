@@ -1,6 +1,6 @@
 <md-dialog>
 
-  <md-content class="sticky-container">
+  <md-content class="sticky-container gaminglive_dialog">
     <md-subheader>Liste des Chaines GamingLive actives</md-subheader>
     <div class="dialog-content">
 
@@ -8,9 +8,9 @@
         <md-item class="md-3-line" ng-repeat="item in items">
           <div class="md-item-text">
 
-            <md-button class="md-raised" ng-click="dialog_switchDailychannel({{item.id}})">{{ item.title }}</md-button>
+            <md-button class="md-raised" ng-click="dialog_switchDailychannel(item.id)">{{ item.title }}</md-button>
             
-            <span class="badge floatR">{{ item.audience }}</span>
+            <span class="badge floatR">{{ item.audience }} viewers</span>
 
           </div>
         </md-item>

@@ -34,6 +34,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
 
   <script src="js/angular.js"></script>
+  <script src="./js/resizer.js"></script>
 
 
 </head>
@@ -50,13 +51,11 @@
     </div>
     <div class="navbar-collapse collapse navbar-inverse-collapse">
       <ul class="nav navbar-nav">
-        <li ng-click="showGamingLiveDialog($event)"><a href="javascript:void(0)">Chaines GamingLive</a></li>
-
-        <!-- <li><a href="javascript:void(0)">Chaines Twitch</a></li> -->
+        <li ng-click="showGamingLiveDialog($event)">
+          <a href="javascript:void(0)">Chaines GamingLive</a>
+        </li>
       </ul>
-<!--       <form class="navbar-form navbar-left">
-        <input type="text" class="form-control col-lg-8" placeholder="Search">
-      </form> -->
+
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="https://twitter.com/intent/follow?region=follow_link&screen_name=ptit_lee&tw_p=followbutton&variant=2.0" class="material_twitter" target="_blank"  data-show-count="false"><img src="img/Twitter_logo_blue.png" alt="">Follow me on Twitter </a>
@@ -66,8 +65,26 @@
   </div>
 
 
+  <div class="content" ng-controller="ContentCtrl">
+
+    <div class="container-fluid embed-video">
+      <iframe id="iframe_video" ng-src="{{video_url}}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
 
 
 
+    <div class="container-fluid embed-chat">
+      <iframe id="iframe_chat" ng-src="{{chat_url}}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+
+  </div>
+    <div id="content-resizer" 
+      resizer="vertical" 
+      resizer-width="6" 
+      resizer-left=".embed-video" 
+      resizer-right=".embed-chat">
+      <div class="transparent-layout">
+      </div>
+    </div>
 </body>
 </html>

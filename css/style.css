@@ -38,3 +38,115 @@ h2.md-subheader.md-default-theme {
 h2 .md-subheader-content {
   padding-left: 10px;
 }
+
+.gaminglive_dialog .badge {
+  margin-top: 8px;
+  margin-left: 15px;
+}
+
+.gaminglive_dialog .md-item-text {
+  padding-top: 10px;
+}
+
+html, body { height: 100% }
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 999999999;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  min-height: 100%;
+  padding-top: 50px;
+  position: fixed;
+  margin: 0px auto;
+}
+
+.embed-video {
+  float: left;
+  height: 95%;
+  width: 80%;
+  margin-top: 20px;
+  position: fixed;
+}
+      
+.embed-video iframe {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  top: -20px;
+  left: 0;
+}
+
+body > div.content.ng-scope > div.container-fluid.embed-chat{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.embed-chat {
+  float: right;
+  height: 95%;
+  right: 0;
+  width: 20%;
+  /*max-width:20%;*/
+  overflow: hidden;
+  position: absolute;
+}
+      
+.embed-chat iframe {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+#emplacement_list_stream_twitch {
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+#emplacement_list_stream_twitch label{
+  margin-left: 10px;
+  margin-bottom: 0px;
+  font-size: 18px;
+}
+
+#emplacement_list_stream_dailymotion {
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+#emplacement_list_stream_dailymotion label{
+  margin-left: 10px;
+  margin-bottom: 0px;
+  font-size: 18px;
+}
+
+#content-resizer {
+  background-color: #666;
+  position: absolute;
+  right: 20%;
+  height: 100%;
+  width: 6px;
+  cursor: e-resize;
+  z-index: 1000;
+}
+
+.transparent-layout {
+  width: 40px;
+  margin-left: -20px;
+  height: 100%;
+}
+
+
+body > div.navbar.navbar-inverse.ng-scope {
+  margin-bottom: 0;
+}
+
